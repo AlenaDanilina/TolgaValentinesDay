@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💘 Valentine for Tolga</title>
+  <style>
+    :root{
+      --bg1:#0b0b12; --bg2:#1a0b1a;
+      --card: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --shadow: 0 18px 70px rgba(0,0,0,.55);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; margin:0; font-family:var(--sans); color:var(--text); }
+    body{
+      background:
+        radial-gradient(1200px 700px at 20% 15%, rgba(255,77,166,.25), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(255,45,85,.22), transparent 55%),
+        radial-gradient(900px 700px at 60% 90%, rgba(46,230,166,.12), transparent 60%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+    .wrap{
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px 16px;
+      position:relative;
+    }
+    .card{
+      width:min(920px, 100%);
+      background: var(--card);
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+      position:relative;
+    }
+    .top{
+      padding:26px 22px 14px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    h1{
+      margin:10px 0 8px;
+      font-size: clamp(26px, 4vw, 44px);
+      letter-spacing:.2px;
+      line-height:1.05;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      max-width:68ch;
+      font-size: 15.5px;
+      line-height:1.45;
+    }
+    .content{
+      padding:18px 22px 24px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:16px;
+    }
+    @media (max-width:860px){
+      .content{ grid-template-columns: 1fr; }
+    }
+    .panel{
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding:16px;
+    }
+    .panel h2{
+      margin:0 0 10px;
+      font-size:16px;
+      color:rgba(255,255,255,.88);
+      letter-spacing:.2px;
+    }
+    .poem{
+      font-size:16px;
+      line-height:1.55;
+      color:rgba(255,255,255,.86);
+      margin:0;
+      white-space:pre-line;
+    }
+    .hint{
+      font-family: var(--mono);
+      font-size: 13px;
+      color: rgba(255,255,255,.72);
+      background: rgba(0,0,0,.28);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top:12px;
+    }
+    .lockrow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    input{
+      flex: 1 1 220px;
+      padding:12px 14px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.28);
+      color: var(--text);
+      outline:none;
+      font-size:15px;
+    }
+    input:focus{ border-color: rgba(255,77,166,.55); box-shadow: 0 0 0 4px rgba(255,77,166,.12); }
+    button{
+      padding:12px 14px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.18);
+      background: linear-gradient(135deg, rgba(255,77,166,.95), rgba(255,45,85,.9));
+      color:white;
+      font-weight:700;
+      letter-spacing:.2px;
+      cursor:pointer;
+      transition: transform .08s ease, filter .2s ease;
+      user-select:none;
+    }
+    button:active{ transform: translateY(1px) scale(.99); }
+    button:hover{ filter: brightness(1.07); }
+    .btn-ghost{
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.88);
+    }
+    .gift{
+      margin-top:14px;
+      padding:14px;
+      border-radius: 16px;
+      border:1px dashed rgba(255,209,102,.55);
+      background: rgba(255,209,102,.08);
+      display:none;
+    }
+    .gift .title{
+      font-weight:800;
+      color: rgba(255,255,255,.92);
+      margin:0 0 8px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .small{
+      font-size:13px;
+      color: rgba(255,255,255,.72);
+      margin-top:10px;
+      line-height:1.4;
+    }
+    .footer{
+      padding:14px 22px 20px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.55);
+      font-size:12.5px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .link{
+      color: rgba(255,255,255,.9);
+      text-decoration: underline;
+      text-decoration-color: rgba(255,77,166,.6);
+      text-underline-offset: 3px;
+    }
+    /* floating hearts */
+    .heart{
+      position:absolute;
+      width: 14px; height:14px;
+      transform: rotate(45deg);
+      opacity:.18;
+      pointer-events:none;
+      animation: floatUp linear infinite;
+      filter: blur(.2px);
+    }
+    .heart::before, .heart::after{
+      content:"";
+      position:absolute;
+      width:14px; height:14px;
+      border-radius:50%;
+      background: currentColor;
+      left:0; top:0;
+    }
+    .heart::after{ left:-7px; top:0; }
+    .heart::before{ left:0; top:-7px; }
+    @keyframes floatUp{
+      from{ transform: translateY(0) rotate(45deg); }
+      to{ transform: translateY(-120vh) rotate(45deg); }
+    }
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform: translateX(-50%);
+      padding:10px 12px;
+      background: rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      color: rgba(255,255,255,.86);
+      font-size:13px;
+      display:none;
+      z-index:50;
+      backdrop-filter: blur(8px);
+      max-width:min(92vw, 560px);
+      text-align:center;
+    }
+    .certWrap{ margin-top:12px; text-align:center; }
+    .certName{
+      font-weight:800;
+      letter-spacing:.3px;
+      margin:0 0 10px;
+      color: rgba(255,255,255,.92);
+    }
+    .certImg{
+      max-width:100%;
+      border-radius:14px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.4);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+    }
+    .actions{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="wrap">
+    <div class="card">
+      <div class="top">
+        <div>
+          <div class="badge">💌 Valentine site • secret inside • single file</div>
+          <h1>Happy Valentine’s Day, <span id="name">Tolga</span> 💘</h1>
+          <p class="sub">
+            There’s a little tenderness here and one gift locked with a code.
+            Enter the correct key and the certificate will be revealed 🌿
+          </p>
+        </div>
+        <div class="badge" title="hint">
+          🗝️ the key is nearby • 📍 in our story
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="panel">
+          <h2>A Few Words</h2>
+          <p class="poem" id="poem">
+You are my calm rhythm inside the noise,
+my “just five more minutes” and “I’m here.”
+May this day feel soft,
+like a warm blanket, like gentle light,
+like hands that know how to take away all the tension. 💗
+          </p>
+
+          <div class="hint" id="hint"></div>
+
+          <div class="small">
+            You can change the hint and the code at the bottom of this file in the <span style="font-family:var(--mono);">SETTINGS</span> block.
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Encrypted Gift</h2>
+
+          <div class="lockrow">
+            <input id="code" autocomplete="off" placeholder="Enter the key..." />
+            <button id="openBtn">Unlock 🎁</button>
+            <button id="copyHintBtn" type="button" class="btn-ghost">Copy hint</button>
+          </div>
+
+          <div class="gift" id="gift">
+            <p class="title">🎁 Certificate Unlocked</p>
+
+            <div class="certWrap">
+              <p class="certName">For: <span id="certFor">Tolga</span> 💜</p>
+
+              <!-- IMPORTANT: put the image next to index.html and name it certificate.jpg -->
+              <img id="certImg" class="certImg" src="certificate.jpg" alt="Massage certificate" />
+
+              <div class="actions">
+                <a id="downloadBtn" class="link" href="certificate.jpg" download="Massage_Certificate_Tolga.jpg">
+                  Download certificate
+                </a>
+                <button id="closeBtn" type="button" class="btn-ghost">Hide</button>
+              </div>
+
+              <p class="small" id="giftMeta"></p>
+              <p class="small" id="giftText" style="display:none;"></p>
+            </div>
+          </div>
+
+          <div class="small">
+            If the image doesn’t show: make sure <b>certificate.jpg</b> is in the same folder as <b>index.html</b>.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>Made with 💗 and the right key.</div>
+        <div><a class="link" href="#" id="howto">How to share the link</a></div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+<script>
+  // =========================
+  // SETTINGS (edit here)
+  // =========================
+  const SETTINGS = {
+    name: "Tolga",
+    // Choose any key: a date, a word, a number, etc.
+    secretCode: "1402",
+
+    // Hint for the key:
+    hintHTML: '🔐 Hint for the code: <b>“what would we write on a tiny note to each other?”</b><br/>Format: one word or a number, no spaces.',
+
+    // Optional: a hidden text version of the certificate (kept encrypted in the file)
+    secretText: `SAYIN TOLGA KALCIOĞLU
+SİZE ALENA DANILINA TARAFINDAN
+2 KİŞİLİK 80 DAKİKA MEDİKAL MASAJ
+HEDİYENİZ VAR.
+
+Tel: 0552 589 1000
+Adres: Gayrettepe/Beşiktaş, Melas Hotels İstanbul
+Son kullanım tarihi: 14.05.2026
+Rezervasyon yaptırmayı unutmayın.`
+  };
+
+  // --- tiny “encryption” (for romantic effect, not for real security)
+  const enc = (text, key) => {
+    const t = new TextEncoder().encode(text);
+    const k = new TextEncoder().encode(key);
+    const out = t.map((b,i)=> b ^ k[i % k.length]);
+    let bin = "";
+    out.forEach(b => bin += String.fromCharCode(b));
+    return btoa(bin);
+  };
+  const dec = (b64, key) => {
+    const bin = atob(b64);
+    const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+    const k = new TextEncoder().encode(key);
+    const out = bytes.map((b,i)=> b ^ k[i % k.length]);
+    return new TextDecoder().decode(out);
+  };
+  const encryptedText = enc(SETTINGS.secretText, SETTINGS.secretCode);
+
+  // UI init
+  document.getElementById("name").textContent = SETTINGS.name;
+  document.getElementById("certFor").textContent = SETTINGS.name;
+  document.getElementById("hint").innerHTML = SETTINGS.hintHTML;
+
+  const toast = (msg) => {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.style.display = "block";
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(()=> t.style.display="none", 2400);
+  };
+
+  // Hearts background
+  (function spawnHearts(){
+    const wrap = document.getElementById("wrap");
+    const colors = ["#ff4da6","#ff2d55","#ffd166","#2ee6a6"];
+    for(let i=0;i<18;i++){
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.style.left = Math.random()*100 + "vw";
+      h.style.bottom = (-10 - Math.random()*40) + "vh";
+      h.style.color = colors[Math.floor(Math.random()*colors.length)];
+      h.style.animationDuration = (10 + Math.random()*14) + "s";
+      h.style.animationDelay = (-Math.random()*18) + "s";
+      h.style.opacity = (0.08 + Math.random()*0.22).toFixed(2);
+      wrap.appendChild(h);
+    }
+  })();
+
+  // Unlock logic
+  const codeInput = document.getElementById("code");
+  const openBtn = document.getElementById("openBtn");
+  const gift = document.getElementById("gift");
+  const giftMeta = document.getElementById("giftMeta");
+  const giftText = document.getElementById("giftText");
+  const closeBtn = document.getElementById("closeBtn");
+
+  const normalize = (s) => (s || "").toString().trim().toLowerCase();
+
+  function tryOpen(){
+    const entered = normalize(codeInput.value);
+    const correct = normalize(SETTINGS.secretCode);
+
+    if(!entered){ toast("You need a key 🗝️"); return; }
+
+    if(entered !== correct){
+      toast("Not quite 🙂 Think about the hint");
+      gift.style.display = "none";
+      return;
+    }
+
+    gift.style.display = "block";
+    giftMeta.textContent = "Opened at: " + new Date().toLocaleString();
+    try{ giftText.textContent = dec(encryptedText, SETTINGS.secretCode); } catch(e){}
+
+    toast("🎉 Gift unlocked!");
+    setTimeout(()=> document.getElementById("certImg").scrollIntoView({behavior:"smooth", block:"center"}), 120);
+  }
+
+  openBtn.addEventListener("click", tryOpen);
+  codeInput.addEventListener("keydown", (e)=>{ if(e.key==="Enter") tryOpen(); });
+
+  closeBtn.addEventListener("click", ()=>{
+    gift.style.display = "none";
+    toast("Hidden again 😼");
+  });
+
+  // Copy hint
+  document.getElementById("copyHintBtn").addEventListener("click", async ()=>{
+    const tmp = document.createElement("div");
+    tmp.innerHTML = SETTINGS.hintHTML;
+    const text = (tmp.textContent || tmp.innerText || "").trim();
+    try{
+      await navigator.clipboard.writeText(text);
+      toast("Hint copied ✨");
+    }catch{
+      toast("Couldn’t copy 😿");
+    }
+  });
+
+  // How to send
+  document.getElementById("howto").addEventListener("click", (e)=>{
+    e.preventDefault();
+    toast("Share it by hosting on GitHub Pages / Netlify / Vercel, or just send the folder (index.html + certificate.jpg).");
+  });
+
+  // If certificate image missing
+  document.getElementById("certImg").addEventListener("error", ()=>{
+    toast("I can’t find certificate.jpg. Put it next to index.html and name it certificate.jpg");
+  });
+</script>
+</body>
+</html>
